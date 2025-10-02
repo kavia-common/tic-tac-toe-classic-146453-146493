@@ -1,9 +1,11 @@
 package org.example.app
 
 import android.app.Activity
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.gridlayout.widget.GridLayout
 
 /**
@@ -91,13 +93,14 @@ class MainActivity : Activity() {
         if (board[index] != null) return // already taken
 
         board[index] = currentPlayer
-        button.text = currentPlayer.toString()
+        // Set icon for the move and disable button
+        applyIconForMark(button, currentPlayer)
         button.isEnabled = false
 
         // Check result
         val winner = checkWinner()
         if (winner != null) {
-            statusText.setText(getString(R.string.win_format, playerLabel(winner)))
+            statusText.text = getString(R.string.win_format, playerLabel(winner))
             endGame()
             return
         }
@@ -132,7 +135,15 @@ class MainActivity : Activity() {
     private fun updateBoardUI() {
         cellButtons.forEachIndexed { index, btn ->
             val symbol = board[index]
-            btn.text = symbol?.toString() ?: ""
+            if (symbol == null) {
+                // Clear text and icons for empty cells
+                btn.text = ""
+                btn.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+                btn.contentDescription = null
+            } else {
+                // Apply the appropriate chess piece icon
+                applyIconForMark(btn, symbol)
+            }
             btn.isEnabled = symbol == null && gameStarted
         }
     }
@@ -141,8 +152,9 @@ class MainActivity : Activity() {
     private fun setBoardEnabled(enabled: Boolean) {
         cellButtons.forEach { button: Button ->
             if (enabled) {
-                // Only enable empty cells
-                button.isEnabled = button.text.isNullOrEmpty()
+                // Only enable empty cells (no icon/text)
+                val hasDrawable = button.compoundDrawables.any { it != null }
+                button.isEnabled = !hasDrawable
             } else {
                 button.isEnabled = false
             }
@@ -195,5 +207,29 @@ class MainActivity : Activity() {
     private fun endGame() {
         gameStarted = false
         setBoardEnabled(false)
+    }
+
+    /**
+     * Apply the appropriate chess icon to a board button for the given mark.
+     * X -> Knight, O -> Queen. Clears button text for visual cleanliness.
+     */
+    private fun applyIconForMark(button: Button, mark: Char) {
+        button.text = "" // do not use letters
+
+        val drawable: Drawable? = if (mark == 'X') {
+            ContextCompat.getDrawable(this, R.drawable.ic_chess_knight)
+        } else {
+            ContextCompat.getDrawable(this, R.drawable.ic_chess_queen)
+        }
+
+        // Place the icon centered by using it as top compound drawable
+        button.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)
+
+        // Accessibility content description
+        button.contentDescription = if (mark == 'X') {
+            getString(R.string.player_x)
+        } else {
+            getString(R.string.player_o)
+        }
     }
 }
