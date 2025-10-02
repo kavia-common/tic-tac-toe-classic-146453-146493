@@ -1,0 +1,19 @@
+<resources>
+    <!-- Ocean Professional palette -->
+    <color name="ocean_primary">#2563EB</color>
+    <color name="ocean_secondary">#F59E0B</color>
+    <color name="ocean_error">#EF4444</color>
+
+    <color name="ocean_bg">#F9FAFB</color>
+    <color name="ocean_surface">#FFFFFFFF</color>
+    <color name="ocean_surface_stroke">#E5E7EB</color>
+    <color name="ocean_text">#111827</color>
+
+    <!-- Button states -->
+    <color name="ocean_primary_pressed">#1E4FC2</color>
+    <color name="ocean_secondary_pressed">#D48806</color>
+
+    <!-- Board button -->
+    <color name="board_idle">#F3F4F6</color>
+    <color name="board_pressed">#E5E7EB</color>
+</resources>

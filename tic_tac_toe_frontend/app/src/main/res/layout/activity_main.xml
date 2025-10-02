@@ -1,0 +1,136 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ocean_bg"
+    android:padding="16dp">
+
+    <!-- Subtle gradient surface card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardSurface"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/controlsGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:strokeColor="@color/ocean_surface_stroke"
+        app:strokeWidth="1dp"
+        app:cardBackgroundColor="@color/ocean_surface"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tic_tac_toe"
+                android:textColor="@color/ocean_text"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- 3x3 Grid -->
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridBoard"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:useDefaultMargins="true"
+                app:alignmentMode="alignBounds"
+                app:columnCount="3"
+                app:rowCount="3"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- 9 Board buttons -->
+                <Button
+                    android:id="@+id/cell_0"
+                    style="@style/Widget.TTT.BoardButton"
+                    android:text="" />
+                <Button
+                    android:id="@+id/cell_1"
+                    style="@style/Widget.TTT.BoardButton"
+                    android:text="" />
+                <Button
+                    android:id="@+id/cell_2"
+                    style="@style/Widget.TTT.BoardButton"
+                    android:text="" />
+                <Button
+                    android:id="@+id/cell_3"
+                    style="@style/Widget.TTT.BoardButton"
+                    android:text="" />
+                <Button
+                    android:id="@+id/cell_4"
+                    style="@style/Widget.TTT.BoardButton"
+                    android:text="" />
+                <Button
+                    android:id="@+id/cell_5"
+                    style="@style/Widget.TTT.BoardButton"
+                    android:text="" />
+                <Button
+                    android:id="@+id/cell_6"
+                    style="@style/Widget.TTT.BoardButton"
+                    android:text="" />
+                <Button
+                    android:id="@+id/cell_7"
+                    style="@style/Widget.TTT.BoardButton"
+                    android:text="" />
+                <Button
+                    android:id="@+id/cell_8"
+                    style="@style/Widget.TTT.BoardButton"
+                    android:text="" />
+            </androidx.gridlayout.widget.GridLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Controls and status -->
+    <LinearLayout
+        android:id="@+id/controlsGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:background="@drawable/bg_controls"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/ocean_text"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:text="@string/start_game" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/startButton"
+            style="@style/Widget.TTT.PrimaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/start_game" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/restartButton"
+            style="@style/Widget.TTT.SecondaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/restart_game"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

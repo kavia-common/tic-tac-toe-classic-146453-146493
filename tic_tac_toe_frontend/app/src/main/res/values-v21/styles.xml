@@ -1,0 +1,8 @@
+<resources>
+    <style name="Widget.TTT.PrimaryButton" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">14dp</item>
+        <item name="backgroundTint">@color/ocean_primary</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
